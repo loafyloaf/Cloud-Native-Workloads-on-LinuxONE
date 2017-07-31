@@ -176,3 +176,7 @@ $ cd Cloud-Native-Workloads-on-LinuxONE/files/mean-docker
 All customizations to the application can be made in the [src](https://github.com/gangachris/mean-docker/tree/master/angular-client/src) folder for Angular.js and [api.js](https://github.com/gangachris/mean-docker/blob/master/express-server/routes/api.js) for Express.js. Then simply run the ```docker-compose down``` and ```docker-compose up``` to bring up the MEAN stack with your new code. You can do your application development on any platform, push to github, pull on LinuxONE and bring up the containers without needing any changes to your JavaScript code.
 
 Note, some version number updates were made to Angular's package.json to ensure major security flaws were fixed. The original blog was quite dated and the [new code](files/mean-docker) should be up to date.
+
+## Troubleshooting
+
+If containers are not able to talk to each other, the docker daemon may need to be restarted.  Use ```top``` to find the PID of the daemon, use ```kill -9``` to end that process and then start the docker daemon again.
