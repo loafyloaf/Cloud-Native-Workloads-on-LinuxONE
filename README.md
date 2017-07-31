@@ -133,10 +133,10 @@ This time we will go through the process of migrating an existing docker-compose
 ### 1. Obtain the MEAN stack Docker components from GitHub
 
 The MEAN stack is a combination of several packages starting with MongoDB - which is the most popular OSS NoSQL DB. The M*EAN* components stand for Express.js, Angular.js, Node.js. Node.js is a JavaScript runtime, Express.js is a server framework and Angular.js is an all-purpose MVC/MVVN framework. We will use this [blog](https://scotch.io/tutorials/create-a-mean-app-with-angular-2-and-docker-compose) and this [source code](https://github.com/gangachris/mean-docker/tree/master/express-server) as a starting point. This blog is also useful if you're new to Angular.js/Express.js.
- 
-version: '2' # specify docker-compose version
 
 ```shell
+version: '2' # specify docker-compose version
+
 # Define the services/containers to be run
 services:
   angular: # name of the first service
@@ -147,7 +147,7 @@ services:
   express: #name of the second service
     build: express-server # specify the directory of the Dockerfile
     ports:
-      - "3000:3000" #specify ports forewarding0
+      - "3000:3000" #specify ports forewarding
     links:
       - database
 
@@ -159,7 +159,7 @@ services:
 
 ### 2. Point to LinuxONE binaries of MongoDB and Node.js
 
-The ```image:``` tag in the docker-compose.yaml and the base image name ```FROM node:6``` for the [angular-client/Dockerfile](https://github.com/gangachris/mean-docker/blob/master/angular-client/Dockerfile) and [express-server/Dockerfile](https://github.com/gangachris/mean-docker/blob/master/express-server/Dockerfile) currently point to x86 version of the binaries. In order to run on the LinuxONE platform, we need to point them to the z architecture compatible binaries. A quick search on DockerHub will reveal [sinenomine/mongodb-s390x](https://hub.docker.com/r/sinenomine/mongodb-s390x/) and [s390x/ibmnode](https://hub.docker.com/r/s390x/ibmnode/). Just add a ```:latest``` tag to each and update the appropriate locations.
+The ``image:``` tag in the docker-compose.yml and the base image name ```FROM node:6``` for the [express-server/Dockerfile](https://github.com/gangachris/mean-docker/blob/master/express-server/Dockerfile) currently point to x86 version of the binaries. In order to run on the LinuxONE platform, we need to point them to the z architecture compatible binaries. A quick search on DockerHub will reveal [sinenomine/mongodb-s390x](https://hub.docker.com/r/sinenomine/mongodb-s390x/) and [s390x/ibmnode](https://hub.docker.com/r/s390x/ibmnode/). Just add a ```:latest``` tag and update the appropriate locations.
 
 ### 3. Start the MEAN stack on LinuxONE.
 
