@@ -163,7 +163,13 @@ The ```image:``` tag in the docker-compose.yaml and the base image name ```FROM 
 
 ### 3. Start the MEAN stack on LinuxONE.
 
-```docker-compose up``` point your browser to ```http://[host ip]:4200``` and enjoy!
+Clone the repo and navigate to the correct directory
+```bash
+$ git clone https://github.com/IBM/Cloud-Native-Workloads-on-LinuxONE.git
+$ cd Cloud-Native-Workloads-on-LinuxONE/files/mean-docker
+```
+
+```docker-compose up -d``` point your browser to ```http://[host ip]:8080``` and enjoy!
 
 ### 4. Customizing the application
 
